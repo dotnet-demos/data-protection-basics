@@ -30,7 +30,7 @@ namespace ConsoleApp
             var protectedBytes = dependency.CreateProtector("").Protect(unprotectedBytes);
             using (Stream s = new MemoryStream(protectedBytes))
             {
-                using (FileStream destination = File.OpenWrite(configRoot["FilePath"])) 
+                using (FileStream destination = File.Open(configRoot["FilePath"],FileMode.Truncate,FileAccess.Write,FileShare.None)) 
                 {
                     await s.CopyToAsync(destination);
                 }
